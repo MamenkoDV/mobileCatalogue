@@ -1,7 +1,7 @@
 import Filter from "./Filter.js";
 import ShoppingCart from "./ShoppingCart.js";
 import PhonesCatalogue from "./PhonesCatalogue.js";
-
+import { getAll, getById } from "../api/phones.js";
 export default class PhonesPage {
 	constructor(element, props) {
 		this.element = element;
@@ -9,11 +9,14 @@ export default class PhonesPage {
 
 		this.initComponent(Filter);
 		this.initComponent(ShoppingCart);
-		this.initComponent(PhonesCatalogue);
+		this.initComponent(PhonesCatalogue, {
+			phones: getAll(),
+		});
 	}
-	initComponent(Constructor) {
+	initComponent(Constructor, props = {}) {
 		new Constructor(
-			this.element.querySelector(`[data-component="${Constructor.name}"]`)
+			this.element.querySelector(`[data-component="${Constructor.name}"]`),
+			props
 		);
 	}
 	render() {
