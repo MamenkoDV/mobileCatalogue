@@ -9,18 +9,19 @@ export default class PhonesPage {
 
 		this.state = {
 			phones: getAll(),
-			selectedPhone: getById(),
+			selectedPhone: null,
 		};
 		this.render();
-		this.initComponent(Filter);
-		this.initComponent(ShoppingCart);
-		this.initComponent(PhonesCatalogue, {
-			phones: this.state.phones,
-		});
-		this.initComponent(PhoneViewer, {
-			phone: this.state.selectedPhone,
-		});
 	}
+
+	setState(newState) {
+		this.state = {
+			...this.state,
+			...newState,
+		};
+		this.render();
+	}
+
 	initComponent(Constructor, props = {}) {
 		const componentName = Constructor.name;
 		const element = this.element.querySelector(
@@ -31,8 +32,28 @@ export default class PhonesPage {
 			new Constructor(element, props);
 		}
 	}
+	init() {
+		this.initComponent(Filter);
+		this.initComponent(ShoppingCart);
+		this.initComponent(PhonesCatalogue, {
+			phones: this.state.phones,
+			onPhoneSelected: (phoneId) => {
+				this.setState({
+					selectedPhone: getById(phoneId),
+				});
+			},
+		});
+		this.initComponent(PhoneViewer, {
+			phone: this.state.selectedPhone,
+
+			onBack: () => {
+				this.setState({
+					selectedPhone: null,
+				});
+			},
+		});
+	}
 	render() {
-		console.log(this.state);
 		this.element.innerHTML = `
         <div class="row">
 
@@ -58,5 +79,6 @@ export default class PhonesPage {
         </div>
       </div>
         `;
+		this.init();
 	}
 }

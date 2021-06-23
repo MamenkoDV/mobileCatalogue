@@ -227,13 +227,29 @@ export const getAll = () => {
 	return phonesFromServer;
 };
 export const getById = (phoneId) => {
-	return phoneDetails;
+	const result = look.filter((phone) => phone.id === phoneId);
+	console.log(result[0]);
+	return result[0];
 };
-const look = {
-	age: 0,
-	id: "motorola-xoom-with-wi-fi",
-	imageUrl: "img/phones/motorola-xoom-with-wi-fi.0.jpg",
-	name: "Motorola XOOM\u2122 with Wi-Fi",
-	snippet:
-		"The Next, Next Generation\r\n\r\nExperience the future with Motorola XOOM with Wi-Fi, the world's first tablet powered by Android 3.0 (Honeycomb).",
-};
+const look = [
+	{
+		age: 0,
+		id: "motorola-xoom",
+		images: [
+			"img/phones/lg-axis.0.jpg",
+			"img/phones/lg-axis.1.jpg",
+			"img/phones/lg-axis.2.jpg",
+		],
+		name: "Motorola XOOM\u2122 with Wi-Fi",
+		description: `The Venue is the perfect one-touch,
+		 Smart Phone providing instant access to everything you love. 
+		 All of Venue's features make it perfect for on-the-go students,
+		  mobile professionals, and active social communicators who love
+		   style and performance.\n\nElegantly designed, the Venue offers
+		    a vibrant, curved glass display that\u2019s perfect for viewing 
+			all types of content. The Venue\u2019s slender form factor feels great in your hand and also slips easily into your pocket.  A mobile entertainment powerhouse that lets you download the
+			 latest tunes from Amazon MP3 or books from Kindle, watch video, or stream your favorite radio stations.  All on the go, anytime, anywhere. ",
+		snippet
+	The Next, Next Generation\r\n\r\nExperience the future with Motorola XOOM with Wi-Fi, the world's first tablet powered by Android 3.0 (Honeycomb).`,
+	},
+];
