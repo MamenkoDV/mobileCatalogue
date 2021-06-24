@@ -1,23 +1,16 @@
+import Component from "../Component.js";
 import { getAll, getById } from "../api/phones.js";
 import Filter from "./Filter.js";
 import PhonesCatalogue from "./PhonesCatalogue.js";
 import PhoneViewer from "./PhoneViewer.js";
 import ShoppingCart from "./ShoppingCart.js";
-export default class PhonesPage {
+export default class PhonesPage extends Component {
 	constructor(element) {
-		this.element = element;
-
+		super(element);
 		this.state = {
 			phones: getAll(),
 			selectedPhone: null,
-		};
-		this.render();
-	}
-
-	setState(newState) {
-		this.state = {
-			...this.state,
-			...newState,
+			items: [],
 		};
 		this.render();
 	}
@@ -34,12 +27,17 @@ export default class PhonesPage {
 	}
 	init() {
 		this.initComponent(Filter);
-		this.initComponent(ShoppingCart);
+		this.initComponent(ShoppingCart, { items: this.state.items });
 		this.initComponent(PhonesCatalogue, {
 			phones: this.state.phones,
 			onPhoneSelected: (phoneId) => {
 				this.setState({
 					selectedPhone: getById(phoneId),
+				});
+			},
+			onAdd: (phoneId) => {
+				this.setState({
+					items: [...this.state.items, phoneId],
 				});
 			},
 		});
@@ -49,6 +47,16 @@ export default class PhonesPage {
 			onBack: () => {
 				this.setState({
 					selectedPhone: null,
+				});
+			},
+			onAdd: (phoneId) => {
+				this.setState({
+					items: [...this.state.items, phoneId],
+				});
+			},
+			onDelete: (phoneId) => {
+				this.setState({
+					items: [...this.state.items],
 				});
 			},
 		});

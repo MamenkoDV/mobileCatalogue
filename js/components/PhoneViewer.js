@@ -1,16 +1,18 @@
-export default class PhoneViewer {
-	constructor(element, props) {
-		this.element = element;
-		this.props = props;
-		this.render();
-		this.element.addEventListener("click", (event) => {
-			const button = event.target.closest('[data-element= "BackButton"]');
-			console.log("click");
+import Component from "../Component.js";
 
-			if (!button) {
-				return;
-			}
+export default class PhoneViewer extends Component {
+	constructor(element, props) {
+		super(element, props);
+
+		this.render();
+		this.on("click", "BackButton", () => {
 			this.props.onBack();
+		});
+		this.on("click", "AddToCart", () => {
+			this.props.onAdd(this.props.phone.id);
+		});
+		this.on("click", "deleteFromBascet", () => {
+			this.props.onDelete(this.props.phone.id);
 		});
 	}
 	render() {
@@ -20,7 +22,7 @@ export default class PhoneViewer {
           <img class="phone" src="${phone.images[0]}">
     
           <button data-element= "BackButton">Back</button>
-          <button>Add to basket</button>
+          <button data-element= "AddToCart">Add to Shoping Cart</button>
     
     
           <h1>${phone.name}</h1>

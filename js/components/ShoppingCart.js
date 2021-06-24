@@ -1,16 +1,24 @@
-export default class ShoppingCart {
+import Component from "../Component.js";
+
+export default class ShoppingCart extends Component {
 	constructor(element, props) {
-		this.element = element;
+		super(element, props);
 		this.render();
 	}
 	render() {
+		const { items } = this.props;
 		this.element.innerHTML = `
         <div>
         <h4>Shopping Cart</h4>
         <ul>
-          <li>Phone 1</li>
-          <li>Phone 2</li>
-          <li>Phone 3</li>
+        ${items
+									.map(
+										(item) => `
+        <li>${item}
+        <button data-element= "deleteFromBascet">X</button> 
+        </li>`
+									)
+									.join("")} 
         </ul>
         </div>
         

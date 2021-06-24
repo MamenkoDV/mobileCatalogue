@@ -1,17 +1,16 @@
-export default class PhonesCatalogue {
+import Component from "../Component.js";
+export default class PhonesCatalogue extends Component {
 	constructor(element, props) {
-		this.element = element;
-		this.props = props;
-		this.render();
-		this.element.addEventListener("click", (event) => {
-			const link = event.target.closest('[data-element= "PhoneLink"]');
-			console.log("click");
+		super(element, props);
 
-			if (!link) {
-				return;
-			}
-			const phoneId = link.dataset.phoneId;
+		this.render();
+		this.on("click", "PhoneLink", (event) => {
+			const phoneId = event.delegateTarget.dataset.phoneID;
 			this.props.onPhoneSelected(phoneId);
+		});
+		this.on("click", "AddToCart", (event) => {
+			const phoneId = event.delegateTarget.dataset.phoneId;
+			this.props.onAdd(phoneId);
 		});
 	}
 	render() {
@@ -28,8 +27,10 @@ export default class PhonesCatalogue {
           <img alt="${phone.name}" src="${phone.imageUrl}">
         </a>
 
-        <div class="phones__btn-buy-wrapper">
-          <a class="btn btn-success">
+        <div class="phones__btn-buy-wrapper" >
+          <a class="btn btn-success" 
+		  data-element= "AddToCart"
+		data-phone-id="${phone.id}">
             Add
           </a>
         </div>
