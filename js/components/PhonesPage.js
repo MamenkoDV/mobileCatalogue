@@ -10,55 +10,65 @@ export default class PhonesPage extends Component {
 		this.state = {
 			phones: getAll(),
 			selectedPhone: null,
-			items: [],
+			items: {
+				qwqwd: 1,
+				asd: 2,
+			},
 		};
 		this.render();
 	}
+	addItem(item) {
+		const oldItems = this.state.items;
 
+		const items = {
+			...oldItems,
+			[item]: oldItems[item] ? oldItems[item] + 1 : 1,
+		};
+		this.setState({ items: items });
+		console.log(this.state.items);
+	}
+	removeItem(itemToRemove) {
+		const newItems = this.state.items;
+		delete newItems[itemToRemove];
+		this.setState({
+			items: newItems,
+		});
+	}
+	setSelectedPhone(phoneID) {
+		this.setState({
+			selectedPhone: getById(phoneId),
+		});
+	}
 	initComponent(Constructor, props = {}) {
 		const componentName = Constructor.name;
 		const element = this.element.querySelector(
 			`[data-component="${componentName}"]`
 		);
-		console.log(element, componentName);
 		if (element) {
 			new Constructor(element, props);
 		}
 	}
 	init() {
 		this.initComponent(Filter);
-		this.initComponent(ShoppingCart, { items: this.state.items });
+		this.initComponent(ShoppingCart, {
+			items: this.state.items,
+
+			onDelete: (itemToRemove) => {
+				this.removeItem(itemToRemove);
+			},
+		});
 		this.initComponent(PhonesCatalogue, {
 			phones: this.state.phones,
-			onPhoneSelected: (phoneId) => {
-				this.setState({
-					selectedPhone: getById(phoneId),
-				});
-			},
-			onAdd: (phoneId) => {
-				this.setState({
-					items: [...this.state.items, phoneId],
-				});
-			},
+
+			onPhoneSelected: (phoneId) => this.setSelectedPhone(phoneId),
+
+			onAdd: (phoneId) => this.addItem(phoneId),
 		});
 		this.initComponent(PhoneViewer, {
 			phone: this.state.selectedPhone,
 
-			onBack: () => {
-				this.setState({
-					selectedPhone: null,
-				});
-			},
-			onAdd: (phoneId) => {
-				this.setState({
-					items: [...this.state.items, phoneId],
-				});
-			},
-			onDelete: (phoneId) => {
-				this.setState({
-					items: [...this.state.items],
-				});
-			},
+			onBack: () => this.setSelectedPhone(null),
+			onAdd: (phoneId) => this.addItem(phoneID),
 		});
 	}
 	render() {

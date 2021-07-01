@@ -170,57 +170,62 @@ const phonesFromServer = [
 ];
 const phoneDetails = {
 	additionalFeatures:
-		"Accessibility features: Tactile QWERTY keyboard, four-direction keypad, start and end call buttons, dedicated number keys, camera button, TalkBack screen reader",
+		"Adobe\u00ae Flash\u00ae Player compatible; 1.3MP front-facing camera for video chat; eReader pre-loaded; Swype text input technology\r\n",
 	android: {
-		os: "Android 2.1",
-		ui: "LG Home",
+		os: "Android 2.2",
+		ui: "TouchWiz",
 	},
-	availability: ["Cellular South"],
+	availability: ["AT&T,", "Sprint,", "T-Mobile,", "Verizon"],
 	battery: {
-		standbyTime: "500 hours",
-		talkTime: "8 hours",
-		type: "Lithium Ion (Li-Ion) (1500 mAH)",
+		standbyTime: "780 hours",
+		talkTime: "",
+		type: "Lithium Ion (Li-Ion) (4000 mAH)",
 	},
 	camera: {
 		features: ["Flash", "Video"],
 		primary: "3.0 megapixels",
 	},
 	connectivity: {
-		bluetooth: "Bluetooth 2.1",
-		cell: "1.9 GHz CDMA PCS, 800 MHz CDMA, EVDO Rev. A, 1xRTT",
+		bluetooth: "Bluetooth 3.0",
+		cell:
+			"AT&T: GSM/EDGE : 850/900/1800/1900; 3G : 850/1900/2100\r\n\r\nSprint: CDMA : 850/1900MHz\r\n\r\nT-Mobile: GSM/EDGE : 850/900/1800/1900; 3G : 1700/1900\r\n\r\nVerizon: CDMA : 800MHz/1900MHz",
 		gps: true,
 		infrared: false,
-		wifi: "802.11 b/g",
+		wifi: "802.11 b/g/n",
 	},
 	description:
-		"Android plus QWERTY is a powerful duo. LG Axis melds a speedy UI with the limitless micro-entertainment of 80,000+ apps including voice-activated Google. Feel the tactile vibration on its tempered glass touchscreen. Take the fuzziness out of your fun with a 3.2MP camera that does 360\u00b0 panoramics. And customize your home screens with shortcuts to your apps, favorites, and widgets. It's the centerpiece of your life.",
+		'Feel Free to Tab\u2122. The Samsung Galaxy Tab\u2122, the tablet device that delivers enhanced capabilities with advanced mobility, has a large, perfectly sized, 7.0" screen that offers plenty of room for the thousands of interactive games and apps available for the Android\u2122 platform, and its slim design makes it perfect for travel and one-handed grip. Use the Galaxy Tab to relax and enjoy an e-book, watch rich video or full web content with its Adobe\u00ae Flash\u00ae Player compatibility, video chat using the front-facing camera, or send user-generated content wirelessly to other devices like your TV via AllShare\u2122.  With so many options for customization and interactivity, the Galaxy Tab gives you everything you want, anywhere you go\u2026Feel Free to Tab\u2122.',
 	display: {
-		screenResolution: "WVGA (800 x 480)",
-		screenSize: "3.2 inches",
+		screenResolution: "WSVGA (1024 x 600)",
+		screenSize: "7.0 inches",
 		touchScreen: true,
 	},
 	hardware: {
 		accelerometer: true,
-		audioJack: "",
-		cpu: "600 MHz Qualcomm MSM7627",
+		audioJack: "3.5mm",
+		cpu: "1GHz",
 		fmRadio: false,
-		physicalKeyboard: true,
+		physicalKeyboard: false,
 		usb: "USB 2.0",
 	},
-	id: "lg-axis",
+	id: "samsung-galaxy-tab",
 	images: [
-		"img/phones/lg-axis.0.jpg",
-		"img/phones/lg-axis.1.jpg",
-		"img/phones/lg-axis.2.jpg",
+		"img/phones/samsung-galaxy-tab.0.jpg",
+		"img/phones/samsung-galaxy-tab.1.jpg",
+		"img/phones/samsung-galaxy-tab.2.jpg",
+		"img/phones/samsung-galaxy-tab.3.jpg",
+		"img/phones/samsung-galaxy-tab.4.jpg",
+		"img/phones/samsung-galaxy-tab.5.jpg",
+		"img/phones/samsung-galaxy-tab.6.jpg",
 	],
-	name: "LG Axis",
+	name: "Samsung Galaxy Tab\u2122",
 	sizeAndWeight: {
-		dimensions: ["56.0 mm (w)", "116.0 mm (h)", "16.0 mm (d)"],
-		weight: "158.0 grams",
+		dimensions: ["120.39 mm (w)", "189.99 mm (h)", "11.9 mm (d)"],
+		weight: "379.88 grams",
 	},
 	storage: {
-		flash: "126MB",
-		ram: "256MB",
+		flash: "16384MB",
+		ram: "640MB",
 	},
 };
 export const getAll = () => {
