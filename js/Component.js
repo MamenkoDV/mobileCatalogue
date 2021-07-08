@@ -2,6 +2,7 @@ export default class Component {
 	constructor(element, props = {}) {
 		this.element = element;
 		this.props = props;
+		this.components = {};
 	}
 	setState(newState) {
 		this.state = {
@@ -28,9 +29,16 @@ export default class Component {
 		const element = this.element.querySelector(
 			`[data-component="${componentName}"]`
 		);
-		console.log(element, componentName);
-		if (element) {
-			new Constructor(element, props);
+
+		if (!element) {
+			return;
+		}
+		const current = this.components[componentName];
+
+		if (!current || !_.isEqual(current.props, props)) {
+			this.components[componentName] = new Constructor(element, props);
+		} else {
+			element.parentNode.replaceChild(current.element, element);
 		}
 	}
 }

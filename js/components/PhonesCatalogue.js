@@ -2,7 +2,7 @@ import Component from "../Component.js";
 export default class PhonesCatalogue extends Component {
 	constructor(element, props) {
 		super(element, props);
-
+		console.log("catalog init");
 		this.render();
 		this.on("click", "PhoneLink", (event) => {
 			const phoneId = event.delegateTarget.dataset.phoneID;

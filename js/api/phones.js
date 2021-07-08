@@ -232,8 +232,6 @@ export const getAll = () => {
 	return phonesFromServer;
 };
 export const getById = (phoneId) => {
-	// const result = look.filter((phone) => phone.id === phoneId);
-	// return result[0];
 	return phoneDetails;
 };
 const look = [
